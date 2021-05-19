@@ -167,8 +167,8 @@ int main()
 	for (int i = 1; i <= sample_size; i++)
 	{
 		b_star = calculate_bstar(initial_stock_price, volatility, risk_free_rate, dividend_yield, expiration_time, strike_price);
-		Yi = St_or_0(calculate_St(initial_stock_price, volatility, risk_free_rate, dividend_yield, expiration_time), strike_price); 
 		Xi = calculate_St(initial_stock_price, volatility, risk_free_rate, dividend_yield, expiration_time);
+		Yi = St_or_0(Xi, strike_price); 
 		control = Yi + b_star * (initial_stock_price * exp((risk_free_rate - dividend_yield) * expiration_time) - Xi);
 		Yib = (1.0 - 1.0 / i) * Yib + (1.0 / i) * control;
 		Yib_2 = (1.0 - 1.0 / i) * Yib_2 + (1.0 / i) * pow(control, 2);
